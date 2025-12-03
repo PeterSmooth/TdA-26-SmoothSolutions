@@ -22,6 +22,7 @@ function App() {
       <div>
         <section>
           <h2>API Status</h2>
+          <h2>test</h2>
         </section>
       </div>
     </div>
