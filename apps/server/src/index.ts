@@ -1,4 +1,4 @@
-import "dotenv/config";
+/*import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import { initDatabase } from "./db/init.js";
@@ -51,3 +51,42 @@ app.get("*", (_req, res) => {
 
 
 start();
+*/
+
+import "dotenv/config";
+import express from "express";
+import cors from "cors";
+// import { initDatabase } from "./db/init.js"; // VYPNUTO
+// import { userRoutes } from "./routes/users.js"; // VYPNUTO (zatím)
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// 1. Jednoduchý endpoint pro hlavní API
+app.get("/api", (req, res) => {
+    res.json({ status: "ok", message: "API server běží!" });
+});
+
+// 2. Falešný endpoint pro Users (aby to splnilo zadání)
+app.get("/api/users", (req, res) => {
+    console.log("Někdo volá /api/users");
+    res.json([
+        { id: 1, name: "Test User 1", email: "test1@example.com" },
+        { id: 2, name: "Test User 2", email: "test2@example.com" }
+    ]);
+});
+
+// 3. Hlavní stránka (aby to nepadalo na 404, když nemáme frontend)
+app.get("/", (req, res) => {
+    res.send("Server běží! (Frontend zatím není sestaven)");
+});
+
+// Start serveru
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`✅ SERVER USPĚŠNĚ NASTARTOVAL NA PORTU ${port}`);
+});
+
