@@ -22,13 +22,23 @@ app.use("/api", apiRoutes);
 
 const port = process.env.PORT || 3000;
 async function start() {
-	await initDatabase();
-	app.listen(port, () => {
-		console.log(`Server is running on port ${port}`);
-	});
+    // Zkusíme připojit databázi
+    try {
+        await initDatabase();
+        console.log("✅ Databáze úspěšně připojena.");
+    } catch (error) {
+        // Tady uvidíme, proč to padá!
+        console.error("❌ CRITICAL ERROR: Nepodařilo se připojit k databázi!");
+        console.error(error);
+    }
+
+    // Server spustíme i tak, aby alespoň fungoval (a nevracel 502)
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
 }
 // 1. Cesta k buildu frontendu
-const frontendDistPath = path.join(__dirname, "../../../apps/web/scr");
+const frontendDistPath = path.join(__dirname, "../../../apps/web/dist");
 
 // 2. Řekneme Expressu, ať tyto soubory nabízí
 app.use(express.static(frontendDistPath));
