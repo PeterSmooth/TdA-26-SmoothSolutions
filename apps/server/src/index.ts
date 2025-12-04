@@ -2,7 +2,7 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import { initDatabase } from "./db/init.js";
-
+import { userRoutes } from "./routes/users.js";
 import path from "path";
 
 const app = express();
@@ -17,7 +17,7 @@ apiRoutes.get("/", (_req, res) => {
   res.status(200).json({ organization: "Student Cyber Games" });
 });
 
-
+apiRoutes.use("/users", userRoutes);
 app.use("/api", apiRoutes);
 
 const port = process.env.PORT || 3000;
