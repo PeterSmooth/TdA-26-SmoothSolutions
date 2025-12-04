@@ -9,10 +9,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+
 const apiRoutes = express.Router();
+
 apiRoutes.get("/", (_req, res) => {
-	res.status(200).send("OK");
+  res.status(200).json({ organization: "Student Cyber Games" });
 });
+
 apiRoutes.use("/users", userRoutes);
 app.use("/api", apiRoutes);
 
@@ -23,5 +26,6 @@ async function start() {
 		console.log(`Server is running on port ${port}`);
 	});
 }
+
 
 start();
