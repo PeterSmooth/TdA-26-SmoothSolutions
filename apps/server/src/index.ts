@@ -23,14 +23,14 @@ app.use("/api", apiRoutes);
 const port = process.env.PORT || 3000;
 async function start() {
     // Zkusíme připojit databázi
-    try {
-        await initDatabase();
+    //try {
+       // await initDatabase();
         console.log("✅ Databáze úspěšně připojena.");
-    } catch (error) {
+   // } //catch (error) {
         // Tady uvidíme, proč to padá!
-        console.error("❌ CRITICAL ERROR: Nepodařilo se připojit k databázi!");
-        console.error(error);
-    }
+       // console.error("❌ CRITICAL ERROR: Nepodařilo se připojit k databázi!");
+       // console.error(error);
+   // }
 
     // Server spustíme i tak, aby alespoň fungoval (a nevracel 502)
     app.listen(port, () => {
