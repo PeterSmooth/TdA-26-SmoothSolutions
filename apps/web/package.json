@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node apps/server/scr/index.ts"
   },
   "dependencies": {
     "react": "^19.1.1",
@@ -27,4 +28,6 @@
     "typescript-eslint": "^8.45.0",
     "vite": "^7.1.7"
   }
+
+  
 }
